@@ -22,7 +22,6 @@ test('getUsers gets all users', () => {
       expect(users).toHaveLength(3)
       return null
     })
-    .catch(err => console.log(err))
 })
 
 test('getOneUser gets a single user', () => {
@@ -31,7 +30,6 @@ test('getOneUser gets a single user', () => {
       expect(user.name).toEqual('Joe')
       return null
     })
-    .catch(err => console.log(err))
 })
 
 test('addUser adds a user and returns the new user Id', () => {
@@ -57,7 +55,6 @@ test('editUser edits a user and returns number of users edited', () => {
       expect(usersEdited).toEqual(1)
       return null
     })
-    .catch(err => console.log(err))
 })
 
 test('deleteUser deletes a user and returns number of users deleted', () => {
@@ -66,5 +63,4 @@ test('deleteUser deletes a user and returns number of users deleted', () => {
       expect(usersDeleted).toEqual(1)
       return null
     })
-    .catch(err => console.log(err))
 })
