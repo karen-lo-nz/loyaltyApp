@@ -34,7 +34,7 @@ test('getOneUser gets a single user', () => {
     .catch(err => console.log(err))
 })
 
-test('addUser adds a user', () => {
+test('addUser adds a user and returns the new user Id', () => {
   const testUser = {
     name: 'Tom',
     email: 'tom@gmail.com',
@@ -47,7 +47,7 @@ test('addUser adds a user', () => {
     })
 })
 
-test('editUser edits a user', () => {
+test('editUser edits a user and returns number of users edited', () => {
   const testUser = {
     id: 1,
     name: 'Karen'
@@ -60,7 +60,7 @@ test('editUser edits a user', () => {
     .catch(err => console.log(err))
 })
 
-test('deleteUser deletes a user', () => {
+test('deleteUser deletes a user and returns number of users deleted', () => {
   return db.deleteUser(1, testDb)
     .then(usersDeleted => {
       expect(usersDeleted).toEqual(1)
