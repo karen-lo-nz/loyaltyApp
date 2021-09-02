@@ -22,7 +22,6 @@ test('getShops return all shops', () => {
       expect(shops).toHaveLength(3)
       return null
     })
-    .catch(err => console.log(err))
 })
 
 test('getOneShop will return one shop', () => {
@@ -31,7 +30,6 @@ test('getOneShop will return one shop', () => {
       expect(shop.name).toEqual('KFC')
       return null
     })
-    .catch(err => console.log(err))
 })
 
 test('addShop will add a shop and return the new shops Id', () => {
@@ -45,7 +43,6 @@ test('addShop will add a shop and return the new shops Id', () => {
       expect(newShopId[0]).toEqual(4)
       return null
     })
-    .catch(err => console.log(err))
 })
 
 test('editShop will edit an existing shop and return the number of shops edited', () => {
@@ -58,7 +55,6 @@ test('editShop will edit an existing shop and return the number of shops edited'
       expect(editedShops).toEqual(1)
       return null
     })
-    .catch(err => console.log(err))
 })
 
 test('deleteShop deletes a shop and returns number of shops deleted', () => {
@@ -67,5 +63,4 @@ test('deleteShop deletes a shop and returns number of shops deleted', () => {
       expect(shopsDeleted).toEqual(1)
       return null
     })
-    .catch(err => console.log(err))
 })
