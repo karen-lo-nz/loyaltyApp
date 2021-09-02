@@ -28,12 +28,18 @@ function getStampsByShopId (shopId, db = connection) {
 function addStamp (stamp, db = connection) {
   return db('stamps')
     .insert(stamp)
+    .then( ()=> { // returning new stamp Id
+      return  getStamps() //get all stamps table to see added one
+    })
 }
 
 function editStamp (stamp, db = connection) {
   return db('stamps')
     .where('id', stamp.id)
     .update(stamp)
+    .then( ()=> { // number of stamp editted
+      return  getStamps() //get all stamps table to see your editted one
+    })
 }
 
 function deleteStamp (id, db = connection) {
