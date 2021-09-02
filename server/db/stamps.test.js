@@ -32,6 +32,7 @@ test('getStamps returns all stamps', () => {
 test('getStampsByUserId gets all stamps that match user_id and return matching entries in  from user and shops table', () => {
   return db.getStampsByUserId(1, testDb)
     .then(result => {
+      console.log(result)
       expect(result).toHaveLength(3)
       return null
     })
@@ -41,6 +42,7 @@ test('getStampsByUserId gets all stamps that match user_id and return matching e
 test('getStampsByShopId gets all stamps that match shop_id and return mataching entries in from users and shops table', () => {
   return db.getStampsByShopId(1, testDb)
     .then(result => {
+      console.log(result)
       expect(result).toHaveLength(4)
       return null
     })
