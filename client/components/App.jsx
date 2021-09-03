@@ -1,30 +1,22 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
+import { Route } from 'react-router-dom'
 
-import { fetchFruits } from '../actions'
+import Home from './Home'
+import Nav from './Nav'
+import Features from './Features'
 
-function App (props) {
-  useEffect(() => {
-    props.dispatch(fetchFruits())
-  }, [])
-
+const App = (props) => {
   return (
     <>
       <div className='app'>
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>
-          {props.fruits.map(fruit => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
+        <div className="container">
+          <Route path='/' component={Nav}/>
+          <Route exact path='/' component={Home}/>
+          <Route path='/features' component={Features} />
+        </div>
       </div>
     </>
   )
 }
-const mapStateToProps = (globalState) => {
-  return {
-    fruits: globalState.fruits
-  }
-}
 
-export default connect(mapStateToProps)(App)
+export default App
