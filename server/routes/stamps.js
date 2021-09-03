@@ -15,24 +15,9 @@ router.get('/', (req, res) => {
     })
 })
 
-
-router.get('/:userId', (req, res) => {
-  const userId = req.params.userId
-  return db.getStampsByUserId(userId)
-    .then(results => {
-      console.log(results)
-      res.json(results)
-    })
-    .catch(err => {
-      console.log(err.message)
-    })
-})
-
-
-//note the shops url here not sure we want it here but the route works
-router.get('/shops/:shopId', (req, res) => {
-  const shopId = req.params.shopId
-  return db.getStampsByShopId(shopId)
+//note the users url after stamps here not sure we want it here or in the users routes but the route works
+router.get('/users/:id', (req, res) => {
+  return db.getStampsByUserId(req.params.id)
     .then(results => {
       res.json(results)
     })
@@ -42,14 +27,26 @@ router.get('/shops/:shopId', (req, res) => {
 })
 
 
-//this doesnt seem to work? it returns the stamp table but not a new object
+//note the shops url after stamps here not sure we want it here or in the shops routes but the route works
+router.get('/shops/:id', (req, res) => {
+  return db.getStampsByShopId(req.params.id)
+    .then(results => {
+      res.json(results)
+    })
+    .catch(err => {
+      console.log(err.message)
+    })
+})
+
 router.post('/', (req, res) => {
   const stamp = {
-    user_id: req.body.userId,
-    shop_id: req.body.shopId
+    user_id: req.body.user_id,
+    shop_id: req.body.shop_id
   }
-
   return db.addStamp(stamp)
+    .then(id => { // returns new stamp id in an array
+      return db.getOneStamp(id[0]) //get the added stamp 
+    })
     .then(results => {
       res.json(results)
     })
@@ -58,13 +55,16 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.patch('/:id', (req, res) => {
   const stamp = {
-    user_id: req.body.userId,
-    shop_id: req.body.shopId
+    id: req.params.id,
+    user_id: req.body.user_id,
+    shop_id: req.body.shop_id
   }
-
   return db.editStamp(stamp)
+    .then(() => { // returns number of stamp editted,always 1
+      return db.getOneStamp(stamp.id) //get the editted stamp. 
+    })
     .then(results => {
       res.json(results)
     })
@@ -73,8 +73,11 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   return db.deleteStamp(req.params.id)
+  .then(() => {
+    return db.getStamps()
+  })
     .then(results => {
       res.json(results)
     })

@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 router.get('/:userId', (req, res) => {
   return db.getOneUser(req.params.userId)
     .then(results => {
-      console.log(results)
       res.json(results)
     })
     .catch(err => {
@@ -32,9 +31,12 @@ router.post('/', (req, res) => {
   const user = {
     name: req.body.name,
     phone: req.body.phone,
-    email:req.body.email
+    email: req.body.email
   }
   return db.addUser(user)
+    .then(id => { // returns new user id in an array
+      return db.getOneUser(id[0]) //get the added user
+    })
     .then(results => {
       res.json(results)
     })
@@ -43,14 +45,17 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.patch('/:id', (req, res) => {
   const user = {
+    id: req.params.id,
     name: req.body.name,
     phone: req.body.phone,
-    email:req.body.email,
-    id: req.body.userId
+    email: req.body.email,
   }
   return db.editUser(user)
+  .then(() => { // returns number of user editted,always 1
+    return db.getOneUser(user.id) //get the editted user. 
+  })
     .then(results => {
       res.json(results)
     })
@@ -59,8 +64,11 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   return db.deleteUser(req.params.id)
+  .then(() => {
+    return db.getUsers()
+  })
     .then(results => {
       res.json(results)
     })

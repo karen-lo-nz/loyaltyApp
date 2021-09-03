@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 router.get('/:shopId', (req, res) => {
   return db.getOneShop(req.params.shopId)
     .then(results => {
-      console.log(results)
       res.json(results)
     })
     .catch(err => {
@@ -32,9 +31,12 @@ router.post('/', (req, res) => {
   const shop = {
     name: req.body.name,
     address: req.body.address,
-    email:req.body.email
+    email: req.body.email
   }
   return db.addShop(shop)
+    .then(id => { // returns new shop id in an array
+      return db.getOneShop(id[0]) //get the added shop
+    })
     .then(results => {
       res.json(results)
     })
@@ -43,14 +45,17 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/', (req, res) => {
+router.patch('/:id', (req, res) => {
   const shop = {
+    id: req.params.id,
     name: req.body.name,
     address: req.body.address,
-    email:req.body.email,
-    id: req.body.shopId
+    email: req.body.email,
   }
   return db.editShop(shop)
+    .then(() => { // returns number of shop editted,always 1
+      return db.getOneShop(shop.id) //get the editted shop. 
+    })
     .then(results => {
       res.json(results)
     })
@@ -59,8 +64,11 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   return db.deleteShop(req.params.id)
+    .then(() => {
+      return db.getShops()
+    })
     .then(results => {
       res.json(results)
     })
