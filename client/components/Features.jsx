@@ -5,7 +5,7 @@ const Features = (props) => {
     <>
       <div className="row">
         <div className="col-12 text-center">
-          <h1>Features</h1>
+          <h1 className='display-1'>Features</h1>
         </div>
       </div>
       <div className="row">
