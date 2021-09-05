@@ -1,9 +1,9 @@
 exports.up = function (knex) {
   return knex.schema.createTable('stamps', table => {
     table.increments('id')
-    table.timestamp('created_at')
     table.integer('user_id')
     table.integer('shop_id')
+    table.timestamps(true, true)
   })
 }
 
