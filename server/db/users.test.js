@@ -45,12 +45,12 @@ test('addUser adds a user and returns the new user Id', () => {
     })
 })
 
-test('editUser edits a user and returns number of users edited', () => {
+test('updateUser edits a user and returns number of users edited', () => {
   const testUser = {
     id: 1,
     name: 'Karen'
   }
-  return db.editUser(testUser, testDb)
+  return db.updateUser(testUser, testDb)
     .then(usersEdited => {
       expect(usersEdited).toEqual(1)
       return null

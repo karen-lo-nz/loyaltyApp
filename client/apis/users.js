@@ -2,7 +2,7 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1/users'
 
-const getUsers = () => {
+export const getUsers = () => {
   return request.get(`${rootUrl}/`)
     .then(res => {
       return res.body
@@ -12,7 +12,7 @@ const getUsers = () => {
     })
 }
 
-const addUser = (user) => {
+export const addUser = (user) => {
   return request.post(`${rootUrl}/`)
     .send(user)
     .then(res => {
@@ -23,7 +23,7 @@ const addUser = (user) => {
     })
 }
 
-const updateUser = (user) => {
+export const updateUser = (user) => {
   return request.patch(`${rootUrl}/update`)
     .send(user)
     .then(res => {
@@ -34,7 +34,7 @@ const updateUser = (user) => {
     })
 }
 
-const deleteUser = (id) => {
+export const deleteUser = (id) => {
   return request.del(`${rootUrl}/delete`)
     .then(res => {
       return res.body
@@ -42,11 +42,4 @@ const deleteUser = (id) => {
     .catch(err => {
       throw err
     })
-}
-
-module.exports = {
-  getUsers,
-  addUser,
-  updateUser,
-  deleteUser
 }
