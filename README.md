@@ -1,4 +1,8 @@
-# Fullstack boilerplate
+# Loyalty App
+
+## A full stack application built with a React/Redux front end and a Node.js back end.
+
+This application is designed to replace the traditional loyalty card with a streamlined and digital alternative. This is a prototype only and does not include auth, this will be implemented for the final product.
 
 ## Getting Started
 
