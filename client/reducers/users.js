@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
 
     case EDIT_USER:
       return state.map(user => {
-        if (user.id === action.user.id) return action.user.id
+        if (user.id === action.user.id) return action.user
         else return user
       })
 
