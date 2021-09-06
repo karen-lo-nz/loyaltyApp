@@ -23,8 +23,8 @@ const addUser = (user) => {
     })
 }
 
-const editUser = (user) => {
-  return request.patch(`${rootUrl}/${user.id}`)
+const updateUser = (user) => {
+  return request.patch(`${rootUrl}/update`)
     .send(user)
     .then(res => {
       return res.body
@@ -35,7 +35,7 @@ const editUser = (user) => {
 }
 
 const deleteUser = (id) => {
-  return request.del(`${rootUrl}/${id}`)
+  return request.del(`${rootUrl}/delete`)
     .then(res => {
       return res.body
     })
@@ -47,6 +47,6 @@ const deleteUser = (id) => {
 module.exports = {
   getUsers,
   addUser,
-  editUser,
+  updateUser,
   deleteUser
 }
