@@ -29,7 +29,7 @@ const setOneShop = (shop) => {
   }
 }
 
-export const getOneShop = () => {
+export const getOneShop = (id) => {
   return dispatch => {
     return fetchShopById(id)
       .then(shop => {

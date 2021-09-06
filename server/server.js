@@ -2,8 +2,8 @@ const express = require('express')
 const path = require('path')
 
 const stampsRoutes = require('./routes/stamps')
-const usersRoutes = require ('./routes/users')
-const shopsRoutes = require ('./routes/shops')
+const usersRoutes = require('./routes/users')
+const shopsRoutes = require('./routes/shops')
 
 const server = express()
 

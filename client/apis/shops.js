@@ -5,6 +5,7 @@ const rootUrl = '/api/v1/shops'
 export const fetchShops = () => {
   return request.get(rootUrl)
     .then(response => {
+      console.log(`shops is${response}`)
       return response.body
     })
     .catch(err => {
@@ -12,6 +13,7 @@ export const fetchShops = () => {
     })
 }
 
+//  get one shop
 export const fetchShopById = (id) => {
   return request.get(`${rootUrl}/${id}`)
     .then(response => {

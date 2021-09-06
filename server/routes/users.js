@@ -46,14 +46,9 @@ router.post('/', (req, res) => {
     })
 })
 
-router.patch('/:id', (req, res) => {
-  const user = {
-    id: req.params.id,
-    name: req.body.name,
-    phone: req.body.phone,
-    email: req.body.email
-  }
-  return db.editUser(user)
+router.patch('/update', (req, res) => {
+  const user = req.body
+  return db.updateUser(user)
     .then(() => { // returns number of user editted,always 1
       return db.getOneUser(user.id) // get the editted user.
     })
@@ -66,7 +61,7 @@ router.patch('/:id', (req, res) => {
     })
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/delete', (req, res) => {
   return db.deleteUser(req.params.id)
     .then(() => {
       return db.getUsers()
