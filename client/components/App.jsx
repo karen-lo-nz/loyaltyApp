@@ -9,7 +9,7 @@ import Nav from './Nav'
 import Features from './Features'
 import UserAccount from './UserAccount'
 
-const App = ({ users, dispatch }) => {
+const App = ({ dispatch }) => {
   useEffect(() => {
     dispatch(fetchUsers())
   }, [])
