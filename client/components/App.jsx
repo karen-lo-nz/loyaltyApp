@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+
+import { fetchUsers } from '../actions/users'
 
 import Home from './Home'
 import Nav from './Nav'
 import Features from './Features'
 import UserAccount from './UserAccount'
 
-const App = (props) => {
+const App = ({ users, dispatch }) => {
+  useEffect(() => {
+    dispatch(fetchUsers())
+  }, [])
+
   return (
     <>
       <div className='app'>
@@ -21,4 +28,10 @@ const App = (props) => {
   )
 }
 
-export default App
+const mapStateToProps = (globalState) => {
+  return {
+    users: globalState.users
+  }
+}
+
+export default connect(mapStateToProps)(App)

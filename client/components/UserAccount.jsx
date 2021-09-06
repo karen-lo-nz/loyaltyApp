@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const UserAccount = (props) => {
+const UserAccount = ({ users, dispatch }) => {
   return (
     <>
       <div className="row">
