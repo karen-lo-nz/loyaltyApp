@@ -17,7 +17,7 @@ function addUser (user, db = connection) {
     .insert(user)
 }
 
-function editUser (user, db = connection) {
+function updateUser (user, db = connection) {
   return db('users')
     .where('id', user.id)
     .update(user)
@@ -33,6 +33,6 @@ module.exports = {
   getUsers,
   getOneUser,
   addUser,
-  editUser,
+  updateUser,
   deleteUser
 }
