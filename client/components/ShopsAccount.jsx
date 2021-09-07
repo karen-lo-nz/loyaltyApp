@@ -29,6 +29,7 @@ const ShopAccount = (props) => {
             ? <div>
               <h3>Shop Name: {selectedShop.name}</h3>
               <h3>Shop Address: {selectedShop.address}</h3>
+              <h3>Contact: {selectedShop.email}</h3>
             </div>
             : <div>
             </div>
