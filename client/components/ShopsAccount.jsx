@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getShops } from '../actions/shops'
 
@@ -8,20 +8,29 @@ const ShopAccount = (props) => {
   useEffect(() => {
     props.dispatch(getShops())
   }, [])
-  console.log(shops)
+  const [shopName, setShopName] = useState('')
+
+  const changeHandler = (e) => {
+    setShopName(e.target.value)
+  }
+
+  const selectedShop = shops.find(shop => shop.name === shopName)
+
   return (
     <>
       <div className="row">
         <div className="col-12">
           <h1>Shop Account View</h1>
-          {shops
-            ? shops.map(shop => {
-              return (
-                <li key={shop.id}>{shop.name}</li>
-              )
-            })
+          <select name="shop_name" value={shopName} onChange={(e) => changeHandler(e)}>
+            <option >Select Shop</option>
+            {shops.map(shop => { return <option key={shop.id} value={shop.name}>{shop.name}</option> })}
+          </select>
+          {selectedShop
+            ? <div>
+              <h3>Shop Name: {selectedShop.name}</h3>
+              <h3>Shop Address: {selectedShop.address}</h3>
+            </div>
             : <div>
-              <p>loading...</p>
             </div>
           }
         </div>
