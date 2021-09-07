@@ -4,9 +4,8 @@ const rootUrl = '/api/v1/shops'
 
 export const fetchShops = () => {
   return request.get(rootUrl)
-    .then(response => {
-      console.log(`shops is${response}`)
-      return response.body
+    .then(res => {
+      return res.body
     })
     .catch(err => {
       console.log(err.message)
@@ -16,8 +15,8 @@ export const fetchShops = () => {
 //  get one shop
 export const fetchShopById = (id) => {
   return request.get(`${rootUrl}/${id}`)
-    .then(response => {
-      return response.body
+    .then(res => {
+      return res.body
     })
     .catch(err => {
       console.log(err.message)
@@ -28,8 +27,8 @@ export const fetchShopById = (id) => {
 export const addShop = (shop) => {
   return request.post(rootUrl)
     .send(shop)
-    .then(response => {
-      return response.body
+    .then(res => {
+      return res.body
     })
     .catch(err => {
       console.log(err.message)
@@ -37,10 +36,10 @@ export const addShop = (shop) => {
 }
 // update
 export const updateShop = (shop) => {
-  return request.patch(`${rootUrl}/edit`)
+  return request.patch(`${rootUrl}/update`)
     .send(shop)
-    .then(response => {
-      return response.body
+    .then(res => {
+      return res.body
     })
     .catch(err => {
       console.log(err.message)
@@ -49,9 +48,9 @@ export const updateShop = (shop) => {
 
 // delete
 export const deleteShop = (id) => {
-  return request.delete(`${rootUrl}/${id}`)
-    .then(response => {
-      return response.body
+  return request.delete(`${rootUrl}/:${id}`)
+    .then(res => {
+      return res.body
     })
     .catch(err => {
       console.log(err.message)

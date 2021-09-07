@@ -6,6 +6,7 @@ export const ADD_SHOP = 'ADD_SHOP'
 export const UPDATE_SHOP = 'UPDATE_SHOP'
 export const DELETE_SHOP = 'DELETE_SHOP'
 
+// get all shops
 const setShops = (shops) => {
   return {
     type: SET_SHOPS,
@@ -13,6 +14,7 @@ const setShops = (shops) => {
   }
 }
 
+// thunk
 export const getShops = () => {
   return dispatch => {
     return fetchShops()
@@ -22,12 +24,15 @@ export const getShops = () => {
   }
 }
 
+// get one shop
 const setOneShop = (shop) => {
   return {
     type: SET_SHOP,
     shop
   }
 }
+
+// thunk
 
 export const getOneShop = (id) => {
   return dispatch => {
@@ -38,6 +43,7 @@ export const getOneShop = (id) => {
   }
 }
 
+// add shop
 const addShopToStore = (shop) => {
   return {
     type: ADD_SHOP,
@@ -45,6 +51,7 @@ const addShopToStore = (shop) => {
   }
 }
 
+// thunk
 export const createShop = (shop) => {
   return dispatch => {
     return addShop(shop)
@@ -54,6 +61,7 @@ export const createShop = (shop) => {
   }
 }
 
+// update shop
 const updateShopInStore = (id, shop) => {
   return {
     type: UPDATE_SHOP,
@@ -62,6 +70,7 @@ const updateShopInStore = (id, shop) => {
   }
 }
 
+// thunk
 export const updateShopAction = (shop) => {
   return dispatch => {
     return updateShop(shop.id, shop)
@@ -71,6 +80,7 @@ export const updateShopAction = (shop) => {
   }
 }
 
+// delete shop
 const deleteShopFromStore = (id) => {
   return {
     type: DELETE_SHOP,
@@ -78,6 +88,7 @@ const deleteShopFromStore = (id) => {
   }
 }
 
+// thunk
 export const deleteShopAction = (id) => {
   return dispatch => {
     return deleteShop(id)

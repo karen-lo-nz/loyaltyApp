@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
+import { getShops } from '../actions/shops'
 
 const ShopAccount = (props) => {
   const shops = props.shops
+
+  useEffect(() => {
+    props.dispatch(getShops())
+  }, [])
+  console.log(shops)
   return (
     <>
       <div className="row">
@@ -11,7 +17,7 @@ const ShopAccount = (props) => {
           {shops
             ? shops.map(shop => {
               return (
-                <h1 key={shop.id}>{shop.name}</h1>
+                <li key={shop.id}>{shop.name}</li>
               )
             })
             : <div>
