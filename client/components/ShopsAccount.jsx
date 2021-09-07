@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { getShops } from '../actions/shops'
+import ShopStamps from './ShopStamps'
 
 const ShopAccount = (props) => {
   const shops = props.shops
@@ -34,6 +35,7 @@ const ShopAccount = (props) => {
             : <div>
             </div>
           }
+          <ShopStamps/>
         </div>
       </div>
     </>
