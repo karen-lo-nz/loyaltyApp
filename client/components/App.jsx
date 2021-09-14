@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { fetchUsers } from '../actions/users'
 import { getStamps } from '../actions/stamps'
+import { getShops } from '../actions/shops'
 
 import Home from './Home'
 import Nav from './Nav'
@@ -15,6 +16,7 @@ const App = ({ dispatch }) => {
   useEffect(() => {
     dispatch(fetchUsers())
     dispatch(getStamps())
+    dispatch(getShops())
   }, [])
 
   return (

@@ -6,8 +6,9 @@ import { connect } from 'react-redux'
 
 import { returnShopsFromStamps } from '../utils'
 
-const UserAccount = ({ users, stamps }) => {
+const UserAccount = ({ users, stamps, shops }) => {
   const [userId, setUserId] = useState(null) // local state to identify individual user from store
+  const shopIdArr = returnShopsFromStamps(stamps, userId)
   const handleClick = (id) => {
     setUserId(id)
   }
@@ -33,14 +34,16 @@ const UserAccount = ({ users, stamps }) => {
           <div className="row">
             <div className="col-12 text-center">
               <h2>Welcome {users.find(user => user.id === userId).name}</h2>
-              <p className='text-start'>Total number of Reseraunts visited - </p>
+              <p className='text-start'>Total number of Reseraunts visited - {shopIdArr.length}</p>
               <p className='text-start'>Total number of Stamps collected - {stamps.filter(s => s.user_id === userId).length}</p>
             </div>
           </div>
-          {returnShopsFromStamps(stamps, userId).map(s => {
-            return <p key={s}>{s}</p>
-          })}
-          <UserTile />
+          {shops.map(shop => { // filters out shops globalStore using shop_id's from shopIdArr
+            if (shopIdArr.includes(shop.id)) {
+              return <UserTile shop={shop}/>
+            }
+          })
+          }
         </>
         : null
       }
@@ -51,7 +54,8 @@ const UserAccount = ({ users, stamps }) => {
 const mapStateToProps = (globalState) => {
   return {
     users: globalState.users,
-    stamps: globalState.stamps
+    stamps: globalState.stamps,
+    shops: globalState.shops
   }
 }
 
