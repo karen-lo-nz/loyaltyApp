@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { getOneShop } from '../actions/shops'
 
-const UserTile = (props) => {
+const UserTile = ({ users, stamps }) => {
   return (
     <>
       <div className="row align-items-center">
@@ -14,7 +15,8 @@ const UserTile = (props) => {
 }
 const mapStateToProps = (globalState) => {
   return {
-    users: globalState.users
+    users: globalState.users,
+    stamps: globalState.stamps
   }
 }
 

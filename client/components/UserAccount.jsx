@@ -4,7 +4,7 @@ import UserTile from './UserTile'
 
 import { connect } from 'react-redux'
 
-const UserAccount = ({ users }) => {
+const UserAccount = ({ users, stamps }) => {
   const [userId, setUserId] = useState(null) // local state to identify individual user from store
   const handleClick = (id) => {
     setUserId(id)
@@ -32,7 +32,7 @@ const UserAccount = ({ users }) => {
             <div className="col-12 text-center">
               <h2>Welcome {users.find(user => user.id === userId).name}</h2>
               <p className='text-start'>Total number of Reseraunts visited - </p>
-              <p className='text-start'>Total number of Stamps collected - </p>
+              <p className='text-start'>Total number of Stamps collected - {stamps.filter(s => s.user_id === userId).length}</p>
             </div>
           </div>
           <UserTile />
@@ -45,7 +45,8 @@ const UserAccount = ({ users }) => {
 
 const mapStateToProps = (globalState) => {
   return {
-    users: globalState.users
+    users: globalState.users,
+    stamps: globalState.stamps
   }
 }
 

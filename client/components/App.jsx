@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { fetchUsers } from '../actions/users'
+import { getStamps } from '../actions/stamps'
 
 import Home from './Home'
 import Nav from './Nav'
@@ -13,6 +14,7 @@ import ShopsAccount from './ShopsAccount'
 const App = ({ dispatch }) => {
   useEffect(() => {
     dispatch(fetchUsers())
+    dispatch(getStamps())
   }, [])
 
   return (
