@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import UserTile from './UserTile'
+
 import { connect } from 'react-redux'
 
 const UserAccount = ({ users }) => {
@@ -22,12 +24,21 @@ const UserAccount = ({ users }) => {
               })}
             </ul>
           </div>
-          {userId// if userId has been set then render the following
-            ? <h2>Welcome {users.find(user => user.id === userId).name}</h2>
-            : null
-          }
         </div>
       </div>
+      {userId// if userId has been set then render the following
+        ? <>
+          <div className="row">
+            <div className="col-12 text-center">
+              <h2>Welcome {users.find(user => user.id === userId).name}</h2>
+              <p className='text-start'>Total number of Reseraunts visited - </p>
+              <p className='text-start'>Total number of Stamps collected - </p>
+            </div>
+          </div>
+          <UserTile />
+        </>
+        : null
+      }
     </>
   )
 }
