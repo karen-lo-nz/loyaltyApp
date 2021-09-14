@@ -8,6 +8,7 @@ import Home from './Home'
 import Nav from './Nav'
 import Features from './Features'
 import UserAccount from './UserAccount'
+import ShopsAccount from './ShopsAccount'
 
 const App = ({ dispatch }) => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = ({ dispatch }) => {
           <Route exact path='/' component={Home}/>
           <Route exact path='/features' component={Features} />
           <Route exact path='/user' component={UserAccount} />
+          <Route exact path='/shop' component={ShopsAccount} />
         </div>
       </div>
     </>
