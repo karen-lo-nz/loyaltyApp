@@ -4,6 +4,8 @@ import UserTile from './UserTile'
 
 import { connect } from 'react-redux'
 
+import { returnShopsFromStamps } from '../utils'
+
 const UserAccount = ({ users, stamps }) => {
   const [userId, setUserId] = useState(null) // local state to identify individual user from store
   const handleClick = (id) => {
@@ -35,6 +37,9 @@ const UserAccount = ({ users, stamps }) => {
               <p className='text-start'>Total number of Stamps collected - {stamps.filter(s => s.user_id === userId).length}</p>
             </div>
           </div>
+          {returnShopsFromStamps(stamps, userId).map(s => {
+            return <p key={s}>{s}</p>
+          })}
           <UserTile />
         </>
         : null
